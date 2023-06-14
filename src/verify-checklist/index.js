@@ -21,7 +21,7 @@ const HomePage = () => {
   const [showInput, setShowInput] = useState(false);
   const [showInputDN, setShowInputDN] = useState(false);
   const [showInputChassi, setshowInputChassi] = useState(false);
-  
+
 
   const handleClick = () => {
     setShowItems(false);
@@ -42,18 +42,21 @@ const HomePage = () => {
   return (
     <Container>
       <img src="LogoTrucker.png" alt="" />
+
       {showItems && (
         <>
+          <HrWithIcon icon={handleClick} />
           <h1>Clique em começar CheckList <br />para iniciar o processo de verificações</h1>
-          <button onClick={handleClick}>Iniciar Checklist</button>
+          <button onClick={handleClick}>COMEÇAR CHECKLIST</button>
         </>
       )}
       {showInput && (
         <>
-          <HrWithIcon icon={handleClick} />
+          {/* <HrWithIcon icon={handleClick} /> */}
           <h1>Identificação de DN <br /> Para iniciar o processode <br /> verificações por favor <br /> digite sua DN.</h1>
+          <HrWithIcon icon={handleClick} />
           <input type="text" className="linha-input" placeholder='DN Responsável pelo Caminhão' />
-          <button onClick={handleClickDN} style={{marginTop: '10px'}}>Iniciar Checklist</button>
+          <button onClick={handleClickDN} style={{ marginTop: '63px' }}>COMEÇAR CHECKLIST</button>
         </>
       )}
       {showInputDN && (
@@ -61,7 +64,7 @@ const HomePage = () => {
           <HrWithIcon icon={handleClick} />
           <h1>Contato de telefone por WhatsApp do responsável pelo preenchimento para comunicação e acompanhamento com o time de suporte.</h1>
           <input type="text" className="linha-input" placeholder='DN Responsável pelo Caminhão' />
-          <button  onClick={handleClickDN} style={{marginTop: '10px'}}>Iniciar Checklist</button>
+          <button onClick={handleClickDN} style={{ marginTop: '10px' }}>Iniciar Checklist</button>
         </>
       )}
       {showInputChassi && (
@@ -70,7 +73,7 @@ const HomePage = () => {
           <h1>Identificação de Equipamento Digite informações para identificação do Equipamento.</h1>
           <input type="text" className="linha-input" placeholder='Útimos 8 dígitos do CHASSI' />
           <input type="text" className="linha-input" placeholder='Placa do veículo' />
-          <button onClick={handleRedirect} style={{marginTop: '10px'}}>Iniciar Checklist</button>
+          <button onClick={handleRedirect} style={{ marginTop: '64px' }}>COMEÇAR CHECKLIST</button>
         </>
       )}
     </Container>

@@ -6,7 +6,7 @@ export const Container = styled.form`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 100px;
+  // margin-top: 30px;
   width: 100%;
   
   .wrapperMenuOpen{
@@ -22,18 +22,19 @@ export const Container = styled.form`
 
   .checkListInicial {
     position: relative;
-    width: 790px;
+    width: 98%;
     height: 113px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    margin-top: 62px;
 
     p{
       z-index: 999;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 15px;
       line-height: 0;
       color: white;
     }
@@ -49,7 +50,35 @@ export const Container = styled.form`
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://truckhelp.com.br/checklist/appseguro/images/pictures/28.jpg') center/cover no-repeat;
   }
   
+  .checkListFinal {
+    position: relative;
+    width: 98%;
+    height: 113px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    
+
+    p{
+      z-index: 999;
+      font-weight: 700;
+      font-size: 15px;
+      line-height: 0;
+      color: white;
+    }
+  }
   
+  .checkListFinal::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://truckhelp.com.br/checklist/appseguro/images/pictures/25.jpg') center/cover no-repeat;
+  }
 
   .checkListFinal{
     width: 790px;
@@ -74,7 +103,7 @@ export const Container = styled.form`
   .linha-input {
     border: none;
     border-left: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #c2c5ff;
     outline: none;
     width: 100%;
     border-radius: 0px;
@@ -85,7 +114,7 @@ export const Container = styled.form`
     letter-spacing: -0.3px;
     font-weight: 500;
     text-align: center;
-    font-size: 27px;
+    font-size: 24px;
   }
   img{
     width: 320px;
@@ -95,11 +124,12 @@ export const Container = styled.form`
   button{
     background: #002755;
     color: white;
-    width: 32%;
-    height: 40px;
+    width: 53%;
+    height: 67px;
     border-radius: 4px;
     border: none;
-    cursor: pointer 
+    cursor: pointer;
+    font-size: 21px;
   }
 
   hr {

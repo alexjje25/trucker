@@ -1,22 +1,23 @@
 import React from 'react';
 
-const HrWithIcon = ({icon}) => {
+const HrWithIcon = ({icon, style}) => {
   const hrContainerStyle = {
     display: 'flex',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
+    ...style, // Mescla os estilos personalizados com os estilos padrão
   };
 
   const hrLineStyle = {
     flex: 1,
-    // border: '1px solid #002755',
+    border: '1px solid #c2c5ff',
   };
 
   const hrIconStyle = {
     padding: '0 10px',
-    color: 'blue',
+    color: '#c2c5ff',
+    
   };
-
   return (
     <div style={hrContainerStyle}>
       <hr style={hrLineStyle} />

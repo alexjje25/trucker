@@ -10,9 +10,10 @@ export const Container = styled.form`
 
   .linha-input {
     border: none;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #c2c5ff;
     outline: none;
     width: 70%;
+    margin-top: 82px;
   }
 
   h1{
@@ -30,11 +31,15 @@ export const Container = styled.form`
   button{
     background: #002755;
     color: white;
-    width: 32%;
-    height: 40px;
+    width: 80%;
+    height: 74px;
     border-radius: 4px;
     border: none;
-    cursor: pointer 
+    cursor: pointer;
+    margin-top: 76px;
+    box-shadow: 0 5px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08);
+    font-size: 19px;
+    font-weight: 800;
   }
 
   hr {

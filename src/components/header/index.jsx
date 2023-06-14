@@ -4,13 +4,14 @@ import styled from 'styled-components';
 
 const HeaderContainer = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: space-between ;
+  
   width: 100%;
 
-  div {
-    display: flex;
-    justify-content: space-around;
-  }
+  // div {
+  //   display: flex;
+  //   justify-content: space-around;
+  // }
 `;
 
 const Logo = styled.img`
@@ -19,14 +20,22 @@ const Logo = styled.img`
   margin-left: auto;
 `;
 
-const Header = ({ targetScreen, pageTitle }) => {
+const Header = ({ targetScreen, pageTitle, onGoBack  }) => {
+  
+  const handleGoBack = () => {
+    if (typeof onGoBack === 'function') {
+      onGoBack();
+    }
+  };
+
   return (
-    <HeaderContainer>
+    <div style={{display:'flex', justifyContent: 'space-between'}}>
       <div>
-        <ArrowBackIcon />
-        {pageTitle && <h1>{pageTitle}</h1>}
+        <ArrowBackIcon onClick={handleGoBack} />
       </div>
-    </HeaderContainer>
+      {pageTitle && <h1>{pageTitle}</h1>}
+      <p style={{color: 'white'}}>o</p>
+    </div>
   );
 };
 
