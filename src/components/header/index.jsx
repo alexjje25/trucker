@@ -33,7 +33,7 @@ const Header = ({ targetScreen, pageTitle, onGoBack  }) => {
       <div>
         <ArrowBackIcon onClick={handleGoBack} />
       </div>
-      {pageTitle && <h1>{pageTitle}</h1>}
+      {pageTitle && <h1 style={{fontSize: '24px',fontWeight: 'bold',color: 'rgb(0, 39, 85)',letterSpacing: '0.2em'}}>{pageTitle}</h1>}
       <p style={{color: 'white'}}>o</p>
     </div>
   );

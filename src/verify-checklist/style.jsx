@@ -12,8 +12,9 @@ export const Container = styled.form`
     border: none;
     border-bottom: 1px solid #c2c5ff;
     outline: none;
-    width: 70%;
+    width: 90%;
     margin-top: 82px;
+    font-size: 23px;
   }
 
   h1{
@@ -28,7 +29,7 @@ export const Container = styled.form`
     height: 110px;
   }
 
-  button{
+  .btnWrapper{
     background: #002755;
     color: white;
     width: 80%;

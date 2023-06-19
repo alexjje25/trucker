@@ -1,0 +1,215 @@
+{
+  "questions": [
+    {
+      "pergunta": "OPERAÇÃO",
+      "subtitle": "i: Informar o principal tipo de operação / grupo de operação",
+      "answers": [
+        {
+          "label": "Longa distância (Rodoviário)"
+        },
+        {
+          "label": "Regional (Misto)"
+        }
+      ]
+    },
+    {
+      "pergunta": "SEGMENTO",
+      "subtitle": "i: Informar o principal tipo de operação / grupo de operação",
+      "answers": [
+        {
+          "label": "Basculante"
+        },
+        {
+          "label": "Baú carga geral"
+        }
+      ]
+    },
+    {
+      "pergunta": "TIPO DE CARGA",
+      "subtitle": "Informar a carga transportada na operação do cliente",
+      "answers": [
+        {
+          "label": "Açúcar"
+        },
+        {
+          "label": "Animais vivos"
+        },
+        {
+          "label": "Areia e brita"
+        },
+        {
+          "label": "Automóveis"
+        },
+        {
+          "label": "Bobinas de aço"
+        },
+        {
+          "label": "Cana-de-açúcar inteira"
+        },
+        {
+          "label": "Cana-de-açúcar picada"
+        },
+        {
+          "label": "Carga frigorificada"
+        },
+        {
+          "label": "Carga geral"
+        },
+        {
+          "label": "Carga indivisível"
+        },
+        {
+          "label": "Carga paletizada em geral"
+        },
+        {
+          "label": "Carga refrigerada"
+        },
+        {
+          "label": "Chapas de aço"
+        },
+        {
+          "label": "Cimento a granel"
+        },
+        {
+          "label": "Combustível"
+        },
+        {
+          "label": "Eletrônicos"
+        },
+        {
+          "label": "Fertilizantes"
+        },
+        {
+          "label": "Gases"
+        },
+        {
+          "label": "Grãos"
+        },
+        {
+          "label": "Hortifruti"
+        },
+        {
+          "label": "Laticínios"
+        },
+        {
+          "label": "Leite"
+        },
+        {
+          "label": "Máquinas e equipamentos"
+        },
+        {
+          "label": "Material de construção"
+        },
+        {
+          "label": "Minérios"
+        },
+        {
+          "label": "Pluma de algodão"
+        },
+        {
+          "label": "Polímeros a granel"
+        },
+        {
+          "label": "Produtos químicos"
+        },
+        {
+          "label": "Sucata"
+        },
+        {
+          "label": "Suco de laranja"
+        },
+        {
+          "label": "Toras de madeira"
+        },
+        {
+          "label": "Veículos comerciais"
+        },
+        {
+          "label": "Vidro"
+        }
+      ]
+    },
+    {
+      "pergunta": "IMPLEMENTO",
+      "subtitle": "Informar o tipo construtivo do implemento",
+      "answers": [
+        {
+          "label": "Semirreboque 3 eixos"
+        },
+        {
+          "label": "Semirreboque 3 eixos (1+2)"
+        },
+        {
+          "label": "Semirreboque 3 eixos espaçados (1+1+1)"
+        },
+        {
+          "label": "Semirreboque 4 eixos"
+        },
+        {
+          "label": "Semirreboque 4 eixos (1+4)"
+        },
+        {
+          "label": "Bitrem 7 eixos"
+        },
+        {
+          "label": "Bitrem 9 eixos (bitrenzão)"
+        },
+        {
+          "label": "Tritrem"
+        },
+        {
+          "label": "Rodotrem 9 eixos"
+        }
+      ]
+    },
+    {
+      "pergunta": "CONFIGURAÇÃO DO EIXO",
+      "subtitle": "",
+      "answers": [
+        {
+          "label": "4x2"
+        },
+        {
+          "label": "6x2"
+        },
+        {
+          "label": "8x2"
+        },
+        {
+          "label": "6x4"
+        }
+      ]
+    },
+    {
+      "pergunta": "CONFIGURAÇÃO DA CABINE",
+      "subtitle": "Informar o tipo de cabine utilizada na operação do cliente",
+      "answers": [
+        {
+          "label": "Curta / Estendida"
+        },
+        {
+          "label": "Leito teto baixo"
+        },
+        {
+          "label": "Leito teto alto"
+        }
+      ]
+    },
+    {
+      "pergunta": "CONFIGURAÇÃO DA CABINE",
+      "subtitle": "Informar o tipo de cabine utilizada na operação do cliente",
+      "answers": [
+        {
+          "label": "Curta / Estendida"
+        },
+        {
+          "label": "Leito teto baixo"
+        },
+        {
+          "label": "Leito teto alto"
+        }
+      ]
+    }
+
+  ]
+}

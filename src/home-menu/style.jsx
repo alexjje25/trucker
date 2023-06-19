@@ -2,13 +2,15 @@ import styled from "styled-components";
 
 
 export const Container = styled.form`
+  width: 100%;
+  height: 100vh;
+
+.WrapperContainer{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  // margin-top: 30px;
-  width: 100%;
-  
+}  
   .wrapperMenuOpen{
     display: flex;
     justify-content: center;
@@ -80,16 +82,6 @@ export const Container = styled.form`
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://truckhelp.com.br/checklist/appseguro/images/pictures/25.jpg') center/cover no-repeat;
   }
 
-  .checkListFinal{
-    width: 790px;
-    background: gray;
-    cursor: pointer;
-    height: 113px;
-    margin-top: 13px;
-    display: flex;
-    justify-content: center;
-  }
-
   btn{
       background: #002755;
       color: white;
@@ -105,8 +97,10 @@ export const Container = styled.form`
     border-left: none;
     border-bottom: 1px solid #c2c5ff;
     outline: none;
-    width: 100%;
+    width: 92%;
     border-radius: 0px;
+    font-size: 20px;
+    margin-top:15px;
   }
 
   h1{
@@ -115,22 +109,24 @@ export const Container = styled.form`
     font-weight: 500;
     text-align: center;
     font-size: 24px;
+    margin-top: 2px;
+
   }
   img{
     width: 320px;
     height: 110px;
   }
 
-  button{
-    background: #002755;
-    color: white;
-    width: 53%;
-    height: 67px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-    font-size: 21px;
-  }
+  // button{
+  //   background: #002755;
+  //   color: white;
+  //   width: 53%;
+  //   height: 67px;
+  //   border-radius: 4px;
+  //   border: none;
+  //   cursor: pointer;
+  //   font-size: 21px;
+  // }
 
   hr {
     border: none;

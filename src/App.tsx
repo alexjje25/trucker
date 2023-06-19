@@ -8,6 +8,7 @@ import {
 
 import Verify from "./verify-checklist";
 import HomeMenu from "./home-menu";
+import MyComponent from "./questions";
 
 // import FormEdit from "./FormEdit";
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
       <>
       <Route path="/" index element={< Verify/>} />
       <Route path="/home-menu" element={< HomeMenu/>} />
+      <Route path="/questions" element={< MyComponent/>} />
       {/* <Route path="/form-edit/:id" index element={< FormEdit />} /> */}
       </>
     )
