@@ -209,7 +209,274 @@
           "label": "Leito teto alto"
         }
       ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Condicoes de Entrada",
+      "answers": [
+        {
+          "label": "100% onroad"
+        },
+        {
+          "label": "90% onroad / 10% offroad"
+        },
+        {
+          "label": "Leito teto alto"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Topografia",
+      "answers": [
+        {
+          "label": "Plana"
+        },
+        {
+          "label": "Média"
+        },
+        {
+          "label": "Montanhosa"
+        },
+        {
+          "label": "Muito montanhosa"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Informar as condições de estrada da operação",
+      "answers": [
+        {
+          "label": "Plana"
+        },
+        {
+          "label": "Média"
+        },
+        {
+          "label": "Montanhosa"
+        },
+        {
+          "label": "Muito montanhosa"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Peso transportado (PBTC)",
+      "answers": [
+        {
+          "label": "Peso total em toneladas  [ton]"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Fator de carga",
+      "answers": [
+        {
+          "label": "Inserir o fator de carga em [%]"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Velocidade máxima",
+      "answers": [
+        {
+          "label": "Velocidade máxima [km/h]"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Há tolerância?",
+      "answers": [
+        {
+          "label": "Sim"
+        },
+        {
+          "label": "Não"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Frota de cavalos mecânicos",
+      "answers": [
+        {
+          "label": "DAF"
+        },
+        {
+          "label": "Iveco"
+        },
+        {
+          "label": "Mercedes-Benz"
+        },
+        {
+          "label": "Scania"
+        },
+        {
+          "label": "Volkswagen"
+        },
+        {
+          "label": "Volvo"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Telemetria e rastreador",
+      "answers": [
+        {
+          "label": "Não utiliza"
+        },
+        {
+          "label": "Telemetria"
+        },
+        {
+          "label": "Rastreador"
+        },
+        {
+          "label": "Telemetria e rastreador"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Telemetria e rastreador",
+      "answers": [
+        {
+          "label": "Não utiliza"
+        },
+        {
+          "label": "Telemetria"
+        },
+        {
+          "label": "Rastreador"
+        },
+        {
+          "label": "Telemetria e rastreador"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Km mensal médio",
+      "answers": [
+        {
+          "label": "Km mensal médio"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Itens necessários",
+      "answers": [
+        {
+          "label": "Defletor de ar da cabine"
+        },
+        {
+          "label": "Rodas em alumínio"
+        },
+        {
+          "label": "Suspensão Pneumática"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Entre eixos",
+      "answers": [
+        {
+          "label": "3.200mm"
+        },
+        {
+          "label": "3.400mm"
+        },
+        {
+          "label": "3.600mm"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Consumo de combustível ",
+      "answers": [
+        {
+          "label": "Valor [km/l]"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Consumo de combustível referência na frota",
+      "answers": [
+        {
+          "label": "Valor [km/l]"
+        }
+      ]
+    },
+    {
+      "pergunta": "CARACTERÍSTICAS DA OPERAÇÃO",
+      "subtitle": "Qual fabricante?",
+      "answers": [
+        {
+          "label": "DAF"
+        },
+        {
+          "label": "Iveco"
+        },
+        {
+          "label": "Mercedes-Benz"
+        },
+        {
+          "label": "Scania"
+        },
+        {
+          "label": "Volkswagen"
+        },
+        {
+          "label": "Volvo"
+        }
+      ]
+    },
+    {
+      "pergunta": "DETALHES DA OPERAÇÃO",
+      "subtitle": "Descrever a operação, os principais Pontos Fortes identificados",
+      "answers": [
+        {
+          "label": "DAF"
+        },
+        {
+          "label": "Iveco"
+        }
+      ]
+    },
+    {
+      "pergunta": "DETALHES DA OPERAÇÃO",
+      "subtitle": "Descrever a operação, os principais Pontos Fracos identificados",
+      "answers": [
+        {
+          "label": "DAF"
+        },
+        {
+          "label": "Iveco"
+        }
+      ]
+    },
+    {
+      "pergunta": "VISÃO GERAL DA DEMOSTRAÇÃO",
+      "subtitle": "Quais suas expectativas em relação a esse período de utilização do Caminhão VW? Comente a suas expectativas.",
+      "answers": [
+        {
+          "label": "DAF"
+        },
+        {
+          "label": "Iveco"
+        }
+      ]
     }
-
+    
   ]
 }

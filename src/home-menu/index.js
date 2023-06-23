@@ -189,7 +189,7 @@ const HomeMenu = () => {
       toast.error("Campo Vazio");
     } else {
       setIsOpenWhats(true);
-      setIsOpenForm(false);
+      setIsOtherElementsOpen(false);
       setisHeader('CONTATO')
       setIsHeaderShow(true)
       setHistoryStack([...historyStack, "Whatsapp"]);
@@ -199,12 +199,12 @@ const HomeMenu = () => {
     event.preventDefault();
     if (whatsappInput === '') {
       console.log('campo vazio')
-    }else{
-    setIsOpenPhoto(true);
-    setIsOpenWhats(false);
-    setHistoryStack([...historyStack, "Photo"]);
-    setisHeader('FOTO EQUIPAMENTO') // Add "Photo" to the historyStack
-  }
+    } else {
+      setIsOpenPhoto(true);
+      setIsOpenWhats(false);
+      setHistoryStack([...historyStack, "Photo"]);
+      setisHeader('FOTO EQUIPAMENTO') // Add "Photo" to the historyStack
+    }
   };
   const handleOpenPhotoEsquerdo = () => {
     setIsOpenPhoto(false);
@@ -319,38 +319,39 @@ const HomeMenu = () => {
             </div>
           ) : (
             <>
+
               {/* {<RandomQuestions questions={questions} />} */}
               {isOtherElementsOpen && (
                 <>
-                  <Container>
-                    <h1> <span style={{ fontWeight: '800' }}>Clique</span> na opção que representa este CheckList </h1>
-                    <HrWithIcon icon={''} />
-
-                    <div className="checkListInicial" onClick={toggleText}>
-                      <p>CheckList INICIAL</p>
-                      <p>Verificação que antecede a entrega do equipamento</p>
-                      <p>para o cliente final.</p>
+                  <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
+                  <img src={imgBottom} alt="Foto capturada" style={{ width: '263px', height: '152px' }} />
+                  <form style={{ width: '96%', marginTop: '28px' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome</label>
+                      <input type="text" className="linha-input" placeholder='' value={dnResponsavel} onChange={handleInputChange}
+                      />
                     </div>
-                    <animated.div style={fadeAnimation}>
-                      {isOpen && (
-                        <>
-                          <p>Aqui está o texto que será exibido quando a div for clicada.</p>
-                          <button className="btn" onClick={handleOpenForm} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>
-                            Clique Aqui
-                          </button>
-                        </>
-                      )}
-                    </animated.div>
-                    <div className="checkListFinal" onClick={toggleText} style={{ marginTop: '15px' }}>
-                      <p>CheckList Final</p>
-                      <p>Verificação que antecede a entrega do equipamento</p>
-                      <p>para o cliente final.</p>
-
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Razão Social</label>
+                      <input type="text" className="linha-input" placeholder='' value={dnRazaoSocial} onChange={handleInputChange1} />
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'center' }}>
-                      <a onClick={refreshNavigate} style={{ color: '#002755', marginTop: '45px' }}>Voltar para o inicio</a>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome Fantasia</label>
+                      <input type="text" className="linha-input" placeholder='' value={dnNomeFantasia} onChange={handleInputChange2} />
                     </div>
-                  </Container>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Responsável pelo Estalecimento</label>
+                      <input type="text" className="linha-input" placeholder='' value={dnResponsávelpeloEstalecimento} onChange={handleInputChange3} />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Email</label>
+                      <input type="text" className="linha-input" placeholder='' value={Email} onChange={handleInputChange4} />
+                    </div>
+                    <button className="btn" onClick={handleOpenWhats} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>
+                      CONTINUAR
+                    </button>
+                  </form>
+                  <a onClick={refreshNavigate} style={{ color: '#002755', marginTop: '45px' }}>Voltar para o inicio</a>
                 </>
               )}
             </>
@@ -388,24 +389,23 @@ const HomeMenu = () => {
               <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>*TIRE UMA FOTO
                 DO VEÍCULO.</p>
               {!photoData ? (
-                <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width:'97%' }}>
-                  <video ref={videoRef} autoPlay></video>
-                  <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-                  <div style={{ display: 'flex', gap: '6px', marginTop: '15px' }}>
-                    <button onClick={handleStartCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Iniciar Câmera</button>
-                    <button onClick={handleCapture} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Capturar Foto</button>
-                    <button onClick={handleStopCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Parar Câmera</button>
-                  </div>
-
+                <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
                   {selectedFile && (
                     <div>
                       <h3>Pré-visualização:</h3>
                       <img src={URL.createObjectURL(selectedFile)} alt="Pré-visualização" style={{ maxWidth: '100%' }} />
                     </div>
                   )}
-                  <div style={{marginTop:'19px'}}>
+                  <div style={{ marginTop: '19px' }}>
                     <input type="file" accept="image/*" onChange={handleFileChange} />
                     <button onClick={handleOpenPhotoEsquerdo} style={{ marginTop: '13px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>Enviar</button>
+                  </div>
+                  <video ref={videoRef} autoPlay></video>
+                  <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+                  <div style={{ display: 'flex', gap: '6px', marginTop: '15px' }}>
+                    {/* <button onClick={handleStartCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Iniciar Câmera</button>
+                    <button onClick={handleCapture} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Capturar Foto</button>
+                    <button onClick={handleStopCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Parar Câmera</button> */}
                   </div>
                 </div>
               ) : (
@@ -414,7 +414,7 @@ const HomeMenu = () => {
                   {/* <video ref={videoRef} autoPlay></video> */}
                   {/* <button onClick={TirarOutraFoto} style={{width:'79%'}}>Tirar Outra Foto</button>
                 <button onClick={handleCapture} style={{width:'79%'}}>Capturar Foto</button> */}
-                  <button style={{ width: '59%', marginTop: '11px' , height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }} className="btn" id="btnclick" onClick={handleOpenPhotoEsquerdo}>
+                  <button style={{ width: '59%', marginTop: '11px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }} className="btn" id="btnclick" onClick={handleOpenPhotoEsquerdo}>
                     CONTINUAR
                   </button>
                 </div>
@@ -429,23 +429,24 @@ const HomeMenu = () => {
               <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>*TIRE UMA FOTO
                 DO VEÍCULO.</p>
               {!photoDataEsquerdo ? (
-                <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width:'97%' }}>
-                  <video ref={videoRef} autoPlay></video>
-                  <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
-                  <div style={{ display: 'flex', gap: '6px' }}>
-                    <button onClick={handleStartCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Iniciar Câmera</button>
-                    <button onClick={handleCapture} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Capturar Foto</button>
-                    <button onClick={handleStopCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Parar Câmera</button>
-                  </div>
+                <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
                   {selectedFile2 && (
                     <div>
                       <h3>Pré-visualização:</h3>
                       <img src={URL.createObjectURL(selectedFile2)} alt="Pré-visualização" style={{ maxWidth: '100%' }} />
                     </div>
                   )}
-                  <div style={{marginTop:'19px'}}>
+                  <div style={{ marginTop: '19px' }}>
                     <input type="file" accept="image/*" onChange={handleFileChange2} />
                     <button onClick={refreshNavigateQuestion} style={{ marginTop: '13px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>Enviar</button>
+                  </div>
+
+                  <video ref={videoRef} autoPlay></video>
+                  <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
+                  <div style={{ display: 'flex', gap: '6px' }}>
+                    {/* <button onClick={handleStartCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Iniciar Câmera</button>
+                    <button onClick={handleCapture} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Capturar Foto</button>
+                    <button onClick={handleStopCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Parar Câmera</button> */}
                   </div>
                 </div>
               ) : (
@@ -459,7 +460,7 @@ const HomeMenu = () => {
               )}
             </>
           )}
-          {isOpenForm && (
+          {/* {isOpenForm && (
             <>
               <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
               <img src={imgBottom} alt="Foto capturada" style={{ width: '263px', height: '152px' }} />
@@ -492,7 +493,7 @@ const HomeMenu = () => {
               </form>
               <a onClick={refresh} style={{ color: '#002755', marginTop: '45px' }}>Voltar para o inicio</a>
             </>
-          )}
+          )} */}
         </div>
       </Container>
     </>
