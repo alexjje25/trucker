@@ -8,7 +8,7 @@ import IconMeio from '../../src/assets/imagens/screnn.png'
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer, Slide, Bounce, Flip, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-
+import Whatsapp from '../../src/assets/imagens/whatsapp.png'
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const HomePage = () => {
   const [showInputDN, setShowInputDN] = useState(false);
   const [showInputChassi, setshowInputChassi] = useState(false);
   const [dnResponsavel, setDnResponsavel] = useState('');
+  const [dnResponsavelWhats, setDnResponsavelWhats] = useState('');
   const [dnResponsavelChassi, setDnResponsavelChassi] = useState('');
   const [dnResponsavelPlaca, setDnResponsavelPlaca] = useState('');
 
@@ -35,12 +36,29 @@ const HomePage = () => {
 
       setTimeout(() => {
         setIsLoading(false); // Desativa o loader após a operação assíncrona
-        setshowInputChassi(true) // Ativa o novo estado após o loader ser desativado
+        setShowInputDN(true) // Ativa o novo estado após o loader ser desativado
       }, 2000);
 
       
     }
 
+    console.log('Valor digitado no input:', dnResponsavel);
+    // Faça o que precisar com o valor digitado...
+  };
+  const handleClickDNWhats = (event) => {
+    event.preventDefault();
+    if (dnResponsavelWhats === '') {
+      // alert('O campo DN Responsável pelo Caminhão não pode estar vazio!');
+      toast.error("Campo Vazio");
+    } else {
+      setShowInputDN(false);
+      setIsLoading(true);
+
+      setTimeout(() => {
+        setIsLoading(false); // Desativa o loader após a operação assíncrona
+        setshowInputChassi(true) // Ativa o novo estado após o loader ser desativado
+      }, 2000);
+    }
     console.log('Valor digitado no input:', dnResponsavel);
     // Faça o que precisar com o valor digitado...
   };
@@ -85,17 +103,22 @@ const HomePage = () => {
 
     setDnResponsavel(numericValue);
   };
+  const handleDNInputChangeWhats = (event) => {
+    const inputValue = event.target.value;
+    const numericValue = inputValue.replace(/\D/g, ''); // Filtra apenas os caracteres numéricos
+
+    setDnResponsavelWhats(numericValue);
+  };
 
   const handleDNInputChangeChassi = (event) => {
     const inputValue = event.target.value;
-    const numericValue = inputValue.replace(/\D/g, ''); // Filtra apenas os caracteres numéricos
-
-    setDnResponsavelChassi(numericValue);
+    setDnResponsavelChassi(inputValue);
   };
+  
   const handleDNInputChangePlaca = (event) => {
     const inputValue = event.target.value;
-    const numericValue = inputValue.replace(/\D/g, ''); // Filtra apenas os caracteres numéricos
-    setDnResponsavelPlaca(numericValue);
+    // const numericValue = inputValue.replace(/\D/g, ''); // Filtra apenas os caracteres numéricos
+    setDnResponsavelPlaca(inputValue);
   };
 
   return (
@@ -122,10 +145,13 @@ const HomePage = () => {
       )}
       {showInputDN && (
         <>
+          <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
           <HrWithIcon icon={handleClick} />
-          <h1>Contato de telefone por WhatsApp do responsável pelo preenchimento para comunicação e acompanhamento com o time de suporte.</h1>
-          <input type="text" className="linha-input" placeholder='DN Responsável pelo Caminhão' />
-          <button onClick={handleClickDN} style={{ marginTop: '10px' }} className="btnWrapper">COMEÇAR CHECKLIST</button>
+          <img src={Whatsapp} style={{ width: '50px', height: '50px' }} />
+          <h1 style={{ color: '#6c6c6c', fontSize:'25px'}}>Contato de telefone por WhatsApp do responsável pelo preenchimento para comunicação e acompanhamento com o time de suporte.</h1>
+          <input type="text" className="linha-input" placeholder='(DD) 9 9999-9999' style={{fontSize:'22px'}} value={dnResponsavelWhats} 
+            onChange={handleDNInputChangeWhats}/>
+          <button onClick={handleClickDNWhats} style={{ marginTop: '38px' }} className="btnWrapper">COMEÇAR CHECKLIST</button>
         </>
       )}
       {showInputChassi && (
@@ -137,7 +163,7 @@ const HomePage = () => {
             onChange={handleDNInputChangeChassi} />
           <input type="text" className="linha-input" placeholder='Placa do veículo' value={dnResponsavelPlaca}
             onChange={handleDNInputChangePlaca} />
-          <button onClick={handleRedirect} style={{ marginTop: '64px' }} className="btnWrapper">COMEÇAR CHECKLIST</button>
+          <button onClick={handleRedirect} style={{ marginTop: '64px' }} className="btnWrapper">PRÓXIMO</button>
         </>
       )}
       
