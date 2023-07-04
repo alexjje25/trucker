@@ -8,6 +8,9 @@ import Whatsapp from '../../src/assets/imagens/whatsapp.png'
 import caminhao from '../../src/assets/imagens/caminhãoLoading.gif'
 import imgPhoto from '../../src/assets/imagens/imgPhoto.png'
 import imgBottom from '../../src/assets/imagens/iconBottom.png'
+import iconeUpload from '../../src/assets/imagens/iconeUpload.png'
+import editar from '../../src/assets/imagens/editar.png'
+import remove from '../../src/assets/imagens/remove.png'
 import Header from '../components/header';
 import { useSpring, animated } from 'react-spring';
 import ChecklistInicial from '../components/checklistInicial';
@@ -90,18 +93,56 @@ const HomeMenu = () => {
   const [dnNomeFantasia, setNomeFantasia] = useState('');
   const [dnResponsávelpeloEstalecimento, setResponsávelpeloEstalecimento] = useState('');
   const [Email, setEmail] = useState('');
+  const [Cnpj, setCnpj] = useState('');
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFile2, setSelectedFile2] = useState(null);
   const [whatsappInput, setWhatsappInput] = useState(null);
+  const [dnResponsavelWhats, setDnResponsavelWhats] = useState('');
+  const [imgShow, setImgShow] = useState(true);
+  const [imgShow2, setImgShow2] = useState(true);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage2, setSelectedImage2] = useState(null);
+
 
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
-  };
-  const handleFileChange2 = (event) => {
+    setImgShow(false);
 
-    setSelectedFile2(event.target.files[0]);
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setSelectedImage(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
   };
+
+  const RemoveImageUpload = (event) => {
+    event.preventDefault();
+    setImgShow(true);
+    setSelectedFile(null);
+  };
+
+  const handleFileChange2 = (event) => {
+    setSelectedFile2(event.target.files[0]);
+    setImgShow2(false);
+
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setSelectedImage2(reader.result);
+    };
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleUpload = () => {
     if (selectedFile) {
       console.log('Arquivo selecionado:', selectedFile);
@@ -183,7 +224,7 @@ const HomeMenu = () => {
   };
   const handleOpenWhats = (event) => {
     event.preventDefault();
-    if (dnResponsavel === '' || dnRazaoSocial === '' || dnNomeFantasia === '' || dnResponsávelpeloEstalecimento === '' || Email === '') {
+    if (dnResponsavel === '' || dnRazaoSocial === '' || dnNomeFantasia === '' || dnResponsávelpeloEstalecimento === '' || Email === '' || Cnpj === '') {
       console.log('campo vazio')
       // alert('O campo DN Responsável pelo Caminhão não pode estar vazio!');
       toast.error("Campo Vazio");
@@ -197,8 +238,9 @@ const HomeMenu = () => {
   };
   const handleOpenPhoto = (event) => {
     event.preventDefault();
-    if (whatsappInput === '') {
-      console.log('campo vazio')
+    if (dnResponsavelWhats === '') {
+      // console.log('campo vazio')
+      toast.error("Campo Vazio");
     } else {
       setIsOpenPhoto(true);
       setIsOpenWhats(false);
@@ -206,11 +248,15 @@ const HomeMenu = () => {
       setisHeader('FOTO EQUIPAMENTO') // Add "Photo" to the historyStack
     }
   };
-  const handleOpenPhotoEsquerdo = () => {
-    setIsOpenPhoto(false);
-    setIsOpenPhotoEsquerdo(true);
-    setHistoryStack([...historyStack, "PhotoEsquerdo"]); // Add "PhotoEsquerdo" to the historyStack
-
+  const handleOpenPhotoEsquerdo = (event) => {
+    event.preventDefault();
+    if (selectedFile === null) {
+      toast.error("Insira uma imagem para continuar");
+    } else {
+      setIsOpenPhoto(false);
+      setIsOpenPhotoEsquerdo(true);
+      setHistoryStack([...historyStack, "PhotoEsquerdo"]);
+    } // Add "PhotoEsquerdo" to the historyStack
   };
   const handleQuestions = () => {
     setIsOpenPhotoEsquerdo(false);
@@ -255,8 +301,13 @@ const HomeMenu = () => {
   const refreshNavigate = () => {
     navigate('/');
   };
-  const refreshNavigateQuestion = () => {
-    navigate('/questions');
+  const refreshNavigateQuestion = (event) => {
+    event.preventDefault();
+    if (selectedFile2 === null) {
+      toast.error("Insira uma imagem para continuar");
+    } else {
+      navigate('/questions');
+    }
   };
 
   useEffect(() => {
@@ -293,9 +344,20 @@ const HomeMenu = () => {
   const handleInputChange4 = (event) => {
     setEmail(event.target.value);
   };
+  const handleInputCnpj = (event) => {
+    setCnpj(event.target.value);
+  };
   const handleWhatsapp = (event) => {
     setWhatsappInput(event.target.value);
   };
+  const handleDNInputChangeWhats = (event) => {
+    const inputValue = event.target.value;
+    const numericValue = inputValue.replace(/\D/g, ''); // Filtra apenas os caracteres numéricos
+
+    setDnResponsavelWhats(numericValue);
+  };
+
+
 
   return (
     <>
@@ -326,30 +388,38 @@ const HomeMenu = () => {
                   <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
                   <img src={imgBottom} alt="Foto capturada" style={{ width: '263px', height: '152px' }} />
                   <form style={{ width: '96%', marginTop: '28px' }}>
+                    <h1 syle={{ fontWeight: '600' }}>Para iniciar o questinonário - Identificação do cliente.</h1>
                     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome</label>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>CNPJ</label>
+                      <input type="text" className="linha-input" placeholder='' value={Cnpj} onChange={handleInputCnpj}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>Nome</label>
                       <input type="text" className="linha-input" placeholder='' value={dnResponsavel} onChange={handleInputChange}
                       />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Razão Social</label>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>Razão Social</label>
                       <input type="text" className="linha-input" placeholder='' value={dnRazaoSocial} onChange={handleInputChange1} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome Fantasia</label>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>Nome Fantasia</label>
                       <input type="text" className="linha-input" placeholder='' value={dnNomeFantasia} onChange={handleInputChange2} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Responsável pelo Estalecimento</label>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>Responsável pelo Estalecimento</label>
                       <input type="text" className="linha-input" placeholder='' value={dnResponsávelpeloEstalecimento} onChange={handleInputChange3} />
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                      <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Email</label>
+                      <label style={{ color: '#002755', fontSize: '18px', fontWeight: 'bold' }}>Email</label>
                       <input type="text" className="linha-input" placeholder='' value={Email} onChange={handleInputChange4} />
                     </div>
-                    <button className="btn" onClick={handleOpenWhats} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>
-                      CONTINUAR
-                    </button>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <button className="btn" onClick={handleOpenWhats} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>
+                        CONTINUAR
+                      </button>
+                    </div>
                   </form>
                   <a onClick={refreshNavigate} style={{ color: '#002755', marginTop: '45px' }}>Voltar para o inicio</a>
                 </>
@@ -369,11 +439,12 @@ const HomeMenu = () => {
 
           {isOtherOpenWhats && (
             <>
+              <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
               <HrWithIcon icon={''} />
               <img src={Whatsapp} alt="" style={{ width: '78px', height: '75px' }} />
-              <p style={{ textAlign: 'center', width: '46%' }}>Contato de telefone por WhatsApp do responsável pelo preenchimento para comunicação e acompanhamento com o time de suporte.</p>
-              <input type="text" className="linha-input" placeholder='Numero Whatsaap' style={{ marginTop: '75px' }}
-                value={whatsappInput} onChange={handleWhatsapp}
+              <p style={{ textAlign: 'center', width: '46%' }}>Contato de telefone por WhatsApp do responsável da empresa.</p>
+              <input type="text" className="linha-input" placeholder='(DD) 9 9999-9999' style={{ marginTop: '75px' }}
+                value={dnResponsavelWhats} onChange={handleDNInputChangeWhats}
               />
               <button className="btn" id="btnclick" onClick={handleOpenPhoto} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px', marginTop: '62px' }}>
                 CONTINUAR
@@ -383,6 +454,7 @@ const HomeMenu = () => {
 
           {isOpenPhoto && (
             <>
+            <ToastContainer theme='colored' transition={Zoom} autoClose={2000} hideProgressBar={true}></ToastContainer>
               <HrWithIcon icon={''} />
               <img src={imgPhoto} alt="" style={{ width: '78px', height: '75px' }} />
               <p style={{ lineHeight: '26px', marginBottom: '30px', color: '#6c6c6c' }}>Registrar uma foto externa do equipamento Lado Direito.</p>
@@ -390,14 +462,37 @@ const HomeMenu = () => {
                 DO VEÍCULO.</p>
               {!photoData ? (
                 <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
-                  {selectedFile && (
+
+                  <div style={{ display: 'flex', justifyContent: 'center', }}>
+                    {imgShow && <img src={iconeUpload} style={{ width: '131px', height: '124px' }} />}
+                    {selectedFile && (
+                      <div>
+                        <img src={URL.createObjectURL(selectedFile)} alt="Pré-visualização" style={{ width: '131px', height: '124px' }} />
+                      </div>
+                    )}
+                    <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
+                      <label htmlFor="fileInput">
+                        {selectedImage ? (
+                          <img src={editar} alt="Imagem selecionada" style={{ width: '31px', height: '32px' }} />
+                        ) : (
+                          <img src={editar} alt="Imagem padrão" style={{ width: '31px', height: '32px' }} />
+                        )}
+                        <input type="file" accept="image/*" onChange={handleFileChange} style={{ display: 'none' }} id="fileInput" />
+                      </label>
+                      <img src={remove} alt="Imagem padrão" style={{ width: '28px', height: '28px', marginTop: '62px' }} onClick={RemoveImageUpload} />
+                      {/* <button onClick={RemoveImageUpload}>remover</button> */}
+                    </div>
+                  </div>
+
+                  {/* {selectedFile && (
                     <div>
                       <h3>Pré-visualização:</h3>
                       <img src={URL.createObjectURL(selectedFile)} alt="Pré-visualização" style={{ maxWidth: '100%' }} />
                     </div>
-                  )}
+                  )} */}
                   <div style={{ marginTop: '19px' }}>
-                    <input type="file" accept="image/*" onChange={handleFileChange} />
+
+
                     <button onClick={handleOpenPhotoEsquerdo} style={{ marginTop: '13px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>Enviar</button>
                   </div>
                   <video ref={videoRef} autoPlay></video>
@@ -424,29 +519,48 @@ const HomeMenu = () => {
 
           {isOpenPhotoEsquerdo && (
             <>
+            <ToastContainer theme='colored' transition={Zoom} autoClose={2000} hideProgressBar={true}></ToastContainer>
               <img src={imgPhoto} alt="" style={{ width: '78px', height: '75px' }} />
               <p>Registrar uma foto externa do equipamento Lado Esquerdo.</p>
               <p style={{ color: 'black', fontWeight: 'bold', fontSize: '20px' }}>*TIRE UMA FOTO
                 DO VEÍCULO.</p>
               {!photoDataEsquerdo ? (
                 <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
-                  {selectedFile2 && (
+                  <div style={{ display: 'flex', justifyContent: 'center', }}>
+                    {imgShow2 && <img src={iconeUpload} style={{ width: '131px', height: '124px' }} />}
+                    {selectedFile2 && (
+                      <div>
+                        <img src={URL.createObjectURL(selectedFile2)} alt="Pré-visualização" style={{ width: '131px', height: '124px' }} />
+                      </div>
+                    )}
+                    <div style={{ display: 'flex', width: '69%', flexDirection: 'column', width: '97%' }}>
+                      <label htmlFor="fileInput">
+                        {selectedImage2 ? (
+                          <img src={editar} alt="Imagem selecionada" style={{ width: '31px', height: '32px' }} />
+                        ) : (
+                          <img src={editar} alt="Imagem padrão" style={{ width: '31px', height: '32px' }} />
+                        )}
+                        <input type="file" accept="image/*" onChange={handleFileChange2} style={{ display: 'none' }} id="fileInput" />
+                      </label>
+                      <img src={remove} alt="Imagem padrão" style={{ width: '28px', height: '28px', marginTop: '62px' }} onClick={RemoveImageUpload} />
+                      {/* <button onClick={RemoveImageUpload}>remover</button> */}
+                    </div>
+
+                    {/* {selectedFile2 && (
                     <div>
                       <h3>Pré-visualização:</h3>
                       <img src={URL.createObjectURL(selectedFile2)} alt="Pré-visualização" style={{ maxWidth: '100%' }} />
                     </div>
-                  )}
-                  <div style={{ marginTop: '19px' }}>
-                    <input type="file" accept="image/*" onChange={handleFileChange2} />
-                    <button onClick={refreshNavigateQuestion} style={{ marginTop: '13px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>Enviar</button>
+                  )} */}
+
                   </div>
 
+                  <div style={{ marginTop: '19px' }}>
+                    <button onClick={refreshNavigateQuestion} style={{ marginTop: '13px', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>Enviar</button>
+                  </div>
                   <video ref={videoRef} autoPlay></video>
                   <canvas ref={canvasRef} style={{ display: 'none' }}></canvas>
                   <div style={{ display: 'flex', gap: '6px' }}>
-                    {/* <button onClick={handleStartCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Iniciar Câmera</button>
-                    <button onClick={handleCapture} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Capturar Foto</button>
-                    <button onClick={handleStopCamera} style={{ width: '79%', height: '41px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '17px', border: 'none', borderRadius: '5px' }}>Parar Câmera</button> */}
                   </div>
                 </div>
               ) : (
@@ -460,40 +574,6 @@ const HomeMenu = () => {
               )}
             </>
           )}
-          {/* {isOpenForm && (
-            <>
-              <ToastContainer theme='colored' transition={Zoom} autoClose={200000000000} hideProgressBar={true}></ToastContainer>
-              <img src={imgBottom} alt="Foto capturada" style={{ width: '263px', height: '152px' }} />
-              <form style={{ width: '96%', marginTop: '28px' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                  <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome</label>
-                  <input type="text" className="linha-input" placeholder='' value={dnResponsavel} onChange={handleInputChange}
-                  />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                  <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Razão Social</label>
-                  <input type="text" className="linha-input" placeholder='' value={dnRazaoSocial} onChange={handleInputChange1} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                  <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Nome Fantasia</label>
-                  <input type="text" className="linha-input" placeholder='' value={dnNomeFantasia} onChange={handleInputChange2} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                  <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Responsável pelo Estalecimento</label>
-                  <input type="text" className="linha-input" placeholder='' value={dnResponsávelpeloEstalecimento} onChange={handleInputChange3} />
-                </div>
-                <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px' }}>
-                  <label style={{ color: '#002755', fontSize: '23px', fontWeight: 'bold' }}>Email</label>
-                  <input type="text" className="linha-input" placeholder='' value={Email} onChange={handleInputChange4} />
-                </div>
-                <button className="btn" onClick={handleOpenWhats} style={{ marginTop: '19px', height: '53px', width: '46%', cursor: 'pointer', color: 'white', background: '#002755', fontSize: '20px', border: 'none', borderRadius: '5px' }}>
-                  CONTINUAR
-                </button>
-
-              </form>
-              <a onClick={refresh} style={{ color: '#002755', marginTop: '45px' }}>Voltar para o inicio</a>
-            </>
-          )} */}
         </div>
       </Container>
     </>

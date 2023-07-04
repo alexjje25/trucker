@@ -5,6 +5,18 @@ export const Container = styled.form`
   width: 100%;
   height: 100vh;
 
+  .custom-file-upload {
+    display: inline-block;
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #e1e1e1;
+    border-radius: 4px;
+  }
+  
+  .custom-file-upload:hover {
+    background-color: #d1d1d1;
+  }
+
 .WrapperContainer{
   display: flex;
   align-items: center;
